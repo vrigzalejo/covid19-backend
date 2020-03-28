@@ -1,2 +1,7 @@
 flask
 gunicorn
+graphene>=2.0
+sqlalchemy
+graphene-sqlalchemy
+flask
+flask-graphql

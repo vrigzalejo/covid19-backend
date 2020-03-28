@@ -1,10 +1,3 @@
-# File     : Dockerfile
-# Date     : 13.01.2020
-# Author   : Matthieu Petiteau <mpetiteau.pro@gmail.com>
-#
-# Dockerfile to run our Flask app with Gunicorn.
-#
-
 FROM alpine:3.11.0
 
 # Install needed dependencies for Python 3.
