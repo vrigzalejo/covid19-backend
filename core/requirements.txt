@@ -5,3 +5,4 @@ sqlalchemy
 graphene-sqlalchemy
 flask
 flask-graphql
+Flask-Migrate

@@ -1,16 +1,16 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# File  : serve.py
-# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
-# Date  : 27.12.2019
-
-"""Flask application views."""
-from flask import render_template
-
+from flask_app.schemas.base import schema
+from flask_graphql import GraphQLView
 from . import app
+from flask_app.database.base import db
+from flask_app import setup
+
+@app.route('/')
+def hello_world():
+    # db.create_all()
+    # setup.seed()
+    return 'Hello From Graphql Tutorial!'
 
 
-@app.route("/")
-def root():
-    """Main."""
-    return render_template("index.html", msg="Awesome, it works!")
+app.add_url_rule(
+    '/graphql',
+    view_func=GraphQLView.as_view('graphql', schema=schema, graphiql=True))
