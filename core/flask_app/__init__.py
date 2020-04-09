@@ -10,4 +10,5 @@ configurations = {
 
 app.config.from_object(configurations[os.getenv("FLASK_ENV")])
 
+import flask_app.database.base
 import flask_app.views
