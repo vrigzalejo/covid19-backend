@@ -5,4 +5,5 @@ sqlalchemy
 graphene-sqlalchemy
 flask
 flask-graphql
-Flask-Migrate
+flask-migrate
+pandas==1.0.3

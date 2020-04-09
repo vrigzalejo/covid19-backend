@@ -6,3 +6,4 @@ core/venv
 *.log
 .history
 *.sqlite3
+.idea

@@ -1,11 +1,7 @@
-FROM alpine:3.11.0
+FROM python:3.7-slim
 
 # Install needed dependencies for Python 3.
-RUN apk update && \
-    apk add build-base python3 python3-dev libffi-dev libressl-dev && \
-    ln -sf /usr/bin/python3 /usr/bin/python && \
-    ln -sf /usr/bin/pip3 usr/bin/pip && \
-    pip install --upgrade pip
+RUN pip install --upgrade pip
 
 # Our application directory on our Alpine image.
 ENV APP_PATH /usr/src/app
