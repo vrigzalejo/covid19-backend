@@ -1,7 +1,6 @@
 from flask_app.schemas.base import schema
 from flask_graphql import GraphQLView
 from . import app
-from flask_app.database.base import db
 
 @app.route('/')
 def hello_world():
