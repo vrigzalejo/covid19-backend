@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Death(db.Model):
     __tablename__ = 'deaths'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     numbers = db.Column(db.Integer)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 

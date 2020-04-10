@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Recovery(db.Model):
     __tablename__ = 'recoveries'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     numbers = db.Column(db.Integer)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 

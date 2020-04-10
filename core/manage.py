@@ -2,6 +2,7 @@ from flask_script import Manager, Command
 from flask_app import app
 from flask_migrate import MigrateCommand
 from flask_app.database.base import db
+from flask_app.models.countries import Country
 import pandas as pd
 
 engine = db.get_engine()
@@ -15,20 +16,25 @@ class Seeder(Command):
     def run(self):
         csv = self.ccse_confirmed_global_path + '/time_series_covid19_confirmed_global.csv'
         df = pd.read_csv(csv)
-        filtered_df = df[['Country/Region', 'Lat', 'Long']]
-        filtered_df.index = filtered_df.index + 1
-        table_cols = ['country', 'latitude', 'longitude']
-        (
-            filtered_df.rename(columns=dict(zip(filtered_df.columns, table_cols)))
-            .to_sql(
-                con=engine,
-                name='countries',
-                if_exists='replace',
-                index=True,
-                index_label='id'
-            )
+        filtered_df = (
+            df[['Country/Region']]
+            .drop_duplicates(subset='Country/Region')
+            .reset_index()
         )
-        print(filtered_df.to_csv())
+
+        filtered_df.rename(
+            columns={
+                'Country/Region': 'country'
+            },
+            inplace=True
+        )
+        
+        filtered_df['id'] = range(1, len(filtered_df) + 1)
+        df_dict = filtered_df.to_dict(orient='records')
+        db.engine.execute(Country.__table__.delete())
+        db.engine.execute(Country.__table__.insert(), df_dict)
+        print(df_dict)
+
 
 if __name__ == "__main__":
     manager.add_command('seed', Seeder())

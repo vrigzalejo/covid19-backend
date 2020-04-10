@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Case(db.Model):
     __tablename__ = 'cases'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     country_id = db.Column(db.Integer, db.ForeignKey('countries.id'), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     
