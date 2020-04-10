@@ -9,13 +9,15 @@ engine = db.get_engine()
 manager = Manager(app)
 
 class Seeder(Command):
-    covid19_path = '../COVID-19'
-    ccse_confirmed_global_path = covid19_path + \
-        '/csse_covid_19_data/csse_covid_19_time_series'
+    covid19_path = '../COVID-19/'
+    ccse_confirmed_global_path = covid19_path + 'csse_covid_19_data/csse_covid_19_time_series/'
 
-    def run(self):
-        csv = self.ccse_confirmed_global_path + '/time_series_covid19_confirmed_global.csv'
+    confirm_global_csv = ccse_confirmed_global_path + 'time_series_covid19_confirmed_global.csv'
+
+    def seed_confirm_global_csv(self):
+        csv = self.confirm_global_csv
         df = pd.read_csv(csv)
+
         filtered_df = (
             df[['Country/Region']]
             .drop_duplicates(subset='Country/Region')
@@ -28,12 +30,15 @@ class Seeder(Command):
             },
             inplace=True
         )
-        
+
         filtered_df['id'] = range(1, len(filtered_df) + 1)
         df_dict = filtered_df.to_dict(orient='records')
         db.engine.execute(Country.__table__.delete())
         db.engine.execute(Country.__table__.insert(), df_dict)
         print(df_dict)
+
+    def run(self):
+        self.seed_confirm_global_csv()
 
 
 if __name__ == "__main__":
