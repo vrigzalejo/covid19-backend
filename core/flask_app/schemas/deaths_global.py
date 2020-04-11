@@ -49,6 +49,6 @@ class Query(graphene.ObjectType):
                     func.max(DeathsGlobalModel.date)
                 )
             )
-            return query.filter(filter)
+            query = query.filter(filter)
 
         return query.all()

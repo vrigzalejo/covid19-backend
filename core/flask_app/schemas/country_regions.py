@@ -29,13 +29,14 @@ class Query(graphene.ObjectType):
     ):
         query = CountryRegion.get_query(info)
         
-        if country_region or province_state:
-            filter = (
-                and_(
-                    CountryRegionModel.country_region == country_region,
-                    CountryRegionModel.province_state == province_state
-                )
+        if country_region:
+            query = query.filter(
+                CountryRegionModel.country_region == country_region
             )
-            return query.filter(filter)
+
+        if province_state:
+            query = query.filter(
+                CountryRegionModel.province_state == province_state
+            )
 
         return query.all()
