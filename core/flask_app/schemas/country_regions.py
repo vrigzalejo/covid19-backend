@@ -14,4 +14,5 @@ class Query(graphene.ObjectType):
     country_regions = graphene.List(CountryRegion)
 
     def resolve_country_regions(self, info):
-        return CountryRegionModel.query.all()
+        query = CountryRegion.get_query(info)
+        return query.all()

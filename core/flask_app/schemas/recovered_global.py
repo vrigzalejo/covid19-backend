@@ -14,4 +14,5 @@ class Query(graphene.ObjectType):
     recovered_global = graphene.List(RecoveredGlobal)
 
     def resolve_recovered_global(self, info):
-        return RecoveredGlobalModel.query.all()
+        query = RecoveredGlobal.get_query(info)
+        return query.all()

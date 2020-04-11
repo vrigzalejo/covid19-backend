@@ -14,4 +14,5 @@ class Query(graphene.ObjectType):
     confirmed_global = graphene.List(ConfirmedGlobal)
 
     def resolve_confirmed_global(self, info):
-        return ConfirmedGlobalModel.query.all()
+        query = ConfirmedGlobal.get_query(info)
+        return query.all()

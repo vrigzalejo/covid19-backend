@@ -14,4 +14,5 @@ class Query(graphene.ObjectType):
     deaths_global = graphene.List(DeathsGlobal)
 
     def resolve_deaths_global(self, info):
-        return DeathsGlobalModel.query.all()
+        query = DeathsGlobal.get_query(info)
+        return query.all()
