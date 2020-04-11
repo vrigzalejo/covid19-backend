@@ -1,16 +1,15 @@
 from flask_script import Manager, Command
 from flask_app import app
-from flask_migrate import MigrateCommand
 from flask_app.database.base import db
 from flask_app.models.country_regions import CountryRegion
 from flask_app.models.confirmed_global import ConfirmedGlobal
 from flask_app.models.deaths_global import DeathsGlobal
 from flask_app.models.recovered_global import RecoveredGlobal
-from datetime import datetime
 import pandas as pd
 
 engine = db.get_engine()
 manager = Manager(app)
+
 
 class Seeder(Command):
     covid19_path = '../COVID-19/'

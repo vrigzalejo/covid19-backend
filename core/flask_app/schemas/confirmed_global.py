@@ -1,5 +1,4 @@
 from graphene_sqlalchemy import SQLAlchemyObjectType
-from flask_app.database.base import db
 from flask_app.models.confirmed_global import (
     ConfirmedGlobal as ConfirmedGlobalModel
 )
