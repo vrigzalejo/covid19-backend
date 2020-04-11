@@ -83,7 +83,7 @@ class Seeder(Command):
         print(df_dict)
 
     def __seed_recovered_global(self):
-        csv = self.deaths_global_csv
+        csv = self.recovered_global_csv
         df = pd.read_csv(csv, parse_dates=True)
         df['country_region_id'] = df.index + 1
         df_date_as_rows = pd.melt(
