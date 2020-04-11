@@ -9,7 +9,7 @@ class RecoveredGlobal(db.Model):
     country_region_id = db.Column(
         db.Integer, db.ForeignKey(CountryRegion.id), nullable=False)
     numbers = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
 
     country_region = db.relationship(
         CountryRegion, backref=db.backref(__tablename__, lazy=True))

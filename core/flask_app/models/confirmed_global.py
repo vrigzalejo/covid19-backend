@@ -12,7 +12,7 @@ class ConfirmedGlobal(db.Model):
         nullable=False
     )
     numbers = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
 
     country_region = db.relationship(
         CountryRegion,

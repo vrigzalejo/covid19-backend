@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1ef3eda21b13
+Revision ID: d7deea50d77d
 Revises: 
-Create Date: 2020-04-11 09:15:07.534007
+Create Date: 2020-04-11 15:23:43.542790
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1ef3eda21b13'
+revision = 'd7deea50d77d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,7 +30,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('country_region_id', sa.Integer(), nullable=False),
     sa.Column('numbers', sa.Integer(), nullable=False),
-    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
     sa.ForeignKeyConstraint(['country_region_id'], ['country_regions.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -38,7 +38,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('country_region_id', sa.Integer(), nullable=False),
     sa.Column('numbers', sa.Integer(), nullable=False),
-    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
     sa.ForeignKeyConstraint(['country_region_id'], ['country_regions.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -46,7 +46,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('country_region_id', sa.Integer(), nullable=False),
     sa.Column('numbers', sa.Integer(), nullable=False),
-    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
     sa.ForeignKeyConstraint(['country_region_id'], ['country_regions.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
