@@ -22,7 +22,6 @@ class Seeder(Command):
     def __seed_country_regions(self):
         csv = self.confirmed_global_csv
         df = pd.read_csv(csv)
-
         df_cols = ['Province/State', 'Country/Region', 'Lat', 'Long']
         filtered_df = df[df_cols].reset_index(drop=True)
         filtered_df.rename(
