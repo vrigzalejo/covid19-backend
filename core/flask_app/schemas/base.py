@@ -1,15 +1,15 @@
-from graphene_sqlalchemy import SQLAlchemyConnectionField
-from graphene import ObjectType, String, Schema
-# from .planets import (Planet, Query as QueryPlanets)
-# from .people import (People, Query as QueryPeople)
-from .confirmed_cases import (Query as QueryConfirmedCases)
-
+from graphene import ObjectType, Schema
+from .country_regions import (Query as QueryCountryRegion)
+from .confirmed_global import (Query as QueryConfirmedGlobal)
+from .deaths_global import (Query as QueryDeathsGlobal)
+from .recovered_global import (Query as QueryRecoveredGlobal)
 
 
 class Query(
-    QueryConfirmedCases,
-    # QueryPlanets,
-    # QueryPeople,
+    QueryCountryRegion,
+    QueryConfirmedGlobal,
+    QueryDeathsGlobal,
+    QueryRecoveredGlobal,
     ObjectType
 ):
     pass
