@@ -19,6 +19,22 @@ class Query(graphene.ObjectType):
         RecoveredGlobal,
         latest=graphene.Boolean()
     )
+    total_recovered_global = graphene.Int()
+
+    def resolve_total_recovered_global(self, info):
+        query = RecoveredGlobal.get_query(info)
+
+        filter = (
+            RecoveredGlobalModel.date == db.session.query(
+                func.max(RecoveredGlobalModel.date),
+            )
+        )
+
+        sum = 0
+        for row in query.filter(filter):
+            sum += row.numbers
+
+        return sum
 
     def resolve_recovered_global(
         self,

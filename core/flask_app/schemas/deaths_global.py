@@ -19,6 +19,22 @@ class Query(graphene.ObjectType):
         DeathsGlobal,
         latest=graphene.Boolean()
     )
+    total_deaths_global = graphene.Int()
+
+    def resolve_total_deaths_global(self, info):
+        query = DeathsGlobal.get_query(info)
+
+        filter = (
+            DeathsGlobalModel.date == db.session.query(
+                func.max(DeathsGlobalModel.date),
+            )
+        )
+
+        sum = 0
+        for row in query.filter(filter):
+            sum += row.numbers
+
+        return sum
 
     def resolve_deaths_global(
         self,

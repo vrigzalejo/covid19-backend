@@ -19,6 +19,22 @@ class Query(graphene.ObjectType):
         ConfirmedGlobal,
         latest=graphene.Boolean()
     )
+    total_confirmed_global = graphene.Int()
+
+    def resolve_total_confirmed_global(self, info):
+        query = ConfirmedGlobal.get_query(info)
+
+        filter = (
+            ConfirmedGlobalModel.date == db.session.query(
+                func.max(ConfirmedGlobalModel.date),
+            )
+        )
+
+        sum = 0
+        for row in query.filter(filter):
+            sum += row.numbers
+
+        return sum
 
     def resolve_confirmed_global(
         self,
