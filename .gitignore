@@ -5,7 +5,6 @@ core/venv
 *.swp
 *.log
 .history
-*.sqlite3
 .idea
 .env
 .vscode
