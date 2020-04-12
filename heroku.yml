@@ -1,6 +1,6 @@
 setup:
   config:
-    FLASK_ENV: development
+    FLASK_ENV: production
 build:
   docker:
     web: ./core/Dockerfile
