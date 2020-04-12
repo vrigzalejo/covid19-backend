@@ -1,5 +1,7 @@
 build:
   docker:
     web: ./core/Dockerfile
+  config:
+    FLASK_ENV: development
 run:
   web: gunicorn -c gunicorn_ini.py wsgi:app
