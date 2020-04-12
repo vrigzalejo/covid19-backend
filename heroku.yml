@@ -5,4 +5,4 @@ build:
   docker:
     web: ./core/Dockerfile
 run:
-  web: gunicorn -c gunicorn_ini.py wsgi:app
+  web: gunicorn wsgi:app
