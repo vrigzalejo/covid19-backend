@@ -4,7 +4,7 @@ from . import app
 
 @app.route('/')
 def hello_world():
-    return 'Hello From Graphql Tutorial!'
+    return 'Covid19 Tracker GraphQL'
 
 
 app.add_url_rule(
