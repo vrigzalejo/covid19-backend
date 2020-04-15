@@ -3,7 +3,7 @@ from flask_graphql import GraphQLView
 from . import app
 
 @app.route('/')
-def hello_world():
+def root():
     return 'Covid19 Tracker GraphQL'
 
 
