@@ -1,11 +1,9 @@
 from flask_app import app
 from unittest import TestCase
-from graphene.test import Client
-import requests
 import json
 
 
-class TestCovid19BackendApi(TestCase):
+class TestFlaskApp(TestCase):
     def setUp(self):
         self.app = app.test_client()
         self.headers = {"content-type": "application/json"}
