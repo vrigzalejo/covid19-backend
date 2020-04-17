@@ -10,6 +10,10 @@ RUN pip install --upgrade pip
 ENV APP_PATH /usr/src/app
 RUN mkdir -p $APP_PATH
 
+# Clone COVID-19 repo
+WORKDIR $APP_PATH
+RUN git clone https://github.com/CSSEGISandData/COVID-19.git
+
 # Create sqlite database
 WORKDIR $APP_PATH/core/flask_app/database
 RUN sqlite3 covid19.sqlite3 .databases .quit

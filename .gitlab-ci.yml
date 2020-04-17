@@ -9,7 +9,6 @@ variables:
 test:
     stage: test
     script:
-        - git clone https://github.com/CSSEGISandData/COVID-19.git
         - cp .env.example .env
         - cd core
         - flask db upgrade
