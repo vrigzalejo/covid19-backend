@@ -1,0 +1,17 @@
+image: vrigzalejo/covid19-backend:latest
+
+stages:
+    - test
+
+variables:
+    FLASK_ENV: development
+
+test:
+    stage: test
+    script:
+        - git clone https://github.com/CSSEGISandData/COVID-19.git
+        - cp .env.example .env
+        - flask db upgrade
+        - python manage.py seed
+        - flake8
+        - python -m pytest

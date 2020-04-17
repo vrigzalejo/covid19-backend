@@ -1,8 +1,4 @@
 from graphene_sqlalchemy import SQLAlchemyObjectType
-from sqlalchemy import (
-    or_,
-    and_
-)
 from flask_app.models.country_regions import (
     CountryRegion as CountryRegionModel
 )
@@ -28,7 +24,7 @@ class Query(graphene.ObjectType):
         province_state=None
     ):
         query = CountryRegion.get_query(info)
-        
+
         if country_region:
             query = query.filter(
                 CountryRegionModel.country_region == country_region

@@ -42,7 +42,7 @@ class Query(graphene.ObjectType):
         latest=None
     ):
         query = ConfirmedGlobal.get_query(info)
-        
+
         if latest:
             filter = (
                 ConfirmedGlobalModel.date == db.session.query(
@@ -50,5 +50,5 @@ class Query(graphene.ObjectType):
                 )
             )
             query = query.filter(filter)
-        
+
         return query.all()
