@@ -1,4 +1,4 @@
-image: vrigzalejo/covid19-backend:latest
+image: registry.gitlab.com/vrigzalejo/covid19-backend:latest
 
 stages:
     - test
