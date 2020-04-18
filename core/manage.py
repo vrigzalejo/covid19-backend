@@ -6,6 +6,8 @@ from flask_app.models.confirmed_global import ConfirmedGlobal
 from flask_app.models.deaths_global import DeathsGlobal
 from flask_app.models.recovered_global import RecoveredGlobal
 import pandas as pd
+import git
+import os
 
 engine = db.get_engine()
 manager = Manager(app)
@@ -108,7 +110,30 @@ class Seeder(Command):
         self.__seed_deaths_global()
         self.__seed_recovered_global()
 
+class RepoManager(Command):
+    covid19_path = Seeder.covid19_path
+
+    def __git_pull(self):
+        if os.path.isdir(self.covid19_path):
+            repo = git.Repo(self.covid19_path)
+            local_commit = repo.head.commit
+            repo.remotes.origin.pull()
+            print("Remote: " + str(repo.remotes.origin.name))
+            print("Remote URL: " + str(repo.remotes.origin.url))
+            print("Branch: " + str(repo.active_branch.name))
+            print("SHA: " + str(repo.head.commit))
+            print("Commit: " + str(repo.head.commit.message))
+
+            return print(True) if local_commit != repo.head.commit else print(False)
+        print(self.covid19_path + " doesn't exists")
+
+    def run(self):
+        self.__git_pull()
+        # You can create a cron job for the command below:
+        # python manage.py repo | grep True > /dev/null && python manage.py seed
+
 
 if __name__ == "__main__":
+    manager.add_command('repo', RepoManager())
     manager.add_command('seed', Seeder())
     manager.run()
