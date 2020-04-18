@@ -9,7 +9,8 @@ configurations = {
     "development": "flask_app.config.DefaultConfig",
 }
 
-app.config.from_object(configurations[os.getenv("FLASK_ENV")])
+__env = os.getenv("FLASK_ENV", "development")
+app.config.from_object(configurations[__env])
 
 import flask_app.database.base  # noqa: E402
 import flask_app.views  # noqa: E402, F401
