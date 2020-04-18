@@ -42,13 +42,11 @@ ENV CRON /etc/cron.d
 ENV COVID19_CRON $CRON/covid19-cron
 COPY covid19-cron $COVID19_CRON
 
-# Add exec permission to cron, apply cron job, and create cron log
+# Add exec permission to cron, apply cron job, create cron log, and start the cron
 RUN chmod 0644 $COVID19_CRON && \
     crontab $COVID19_CRON && \
-    touch /var/log/cron.log
-
-# Run the cron
-CMD /usr/sbin/cron -f
+    touch /var/log/cron.log && \
+    /etc/init.d/cron start
 
 # Switch to our app user.
 USER app
