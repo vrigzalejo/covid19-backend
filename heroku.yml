@@ -5,4 +5,4 @@ build:
   docker:
     web: ./core/Dockerfile
 run:
-  web: flask db upgrade && python manage.py seed && gunicorn wsgi:app
+  web: gunicorn wsgi:app

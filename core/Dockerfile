@@ -32,5 +32,8 @@ RUN pip install -r requirements.txt
 # image so we've got the app ready to be launched.
 COPY . .
 
+# Run DB migrations and seed
+RUN flask db upgrade && python manage.py seed
+
 # Switch to our app user.
 USER app
