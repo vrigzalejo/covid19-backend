@@ -1,0 +1,1 @@
+*/25 * * * * python /usr/src/app/core/manage.py repo | grep True > /dev/null && python /usr/src/app/core/manage.py seed >> /var/log/cron.log 2>&1
